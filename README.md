@@ -1,7 +1,7 @@
 ﻿# Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback
 
 Code, data and results for the paper **"Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback"**
-(Muhammad Haseeb and Aitzaz Khurshid, University of Central Punjab, 2026). The study extends the social-sycophancy framework of ELEPHANT
+(Muhammad Haseeb, University of Central Punjab, 2026). The study extends the social-sycophancy framework of ELEPHANT
 (Cheng et al., ICLR 2026, [arXiv:2505.13995](https://arxiv.org/abs/2505.13995)) to feedback on business ideas.
 
 > Status: draft manuscript v4. Numbers in `results/` are the ones reported in the paper.
@@ -43,7 +43,7 @@ Everything in `results/` was computed from `data/judge_scores/` and `data/length
 ## Citation
 
 ```
-Haseeb, M., & Khurshid, A. (2026). Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback. Manuscript in preparation.
+Haseeb, M. (2026). Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback. Manuscript in preparation.
 ```
 
 ## License
