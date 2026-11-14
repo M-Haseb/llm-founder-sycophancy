@@ -1,10 +1,10 @@
 ﻿# Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback
 
 Code, data and results for the paper **"Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback"**
-(Muhammad, 2026). The study extends the social-sycophancy framework of ELEPHANT
+(Muhammad Haseeb and Aitzaz Khurshid, University of Central Punjab, 2026). The study extends the social-sycophancy framework of ELEPHANT
 (Cheng et al., ICLR 2026, [arXiv:2505.13995](https://arxiv.org/abs/2505.13995)) to feedback on business ideas.
 
-> Status: draft manuscript v3. Numbers in `results/` are the ones reported in the paper.
+> Status: draft manuscript v4. Numbers in `results/` are the ones reported in the paper.
 
 ## What was done
 
@@ -18,7 +18,7 @@ Code, data and results for the paper **"Do LLMs Flatter Founders? Sycophancy in 
 
 | Folder | Content |
 |---|---|
-| `paper/` | Manuscript source (`paper.html`, tables and figures are generated in the page) and the PDF (11-page main text plus appendices A to F) |
+| `paper/` | Manuscript source (`paper.html`, tables and figures are generated in the page) and the PDF (12-page main text plus appendices A to F) |
 | `rubrics/` | Judge rubric v0, frozen rubric v1 with hash, strict-subset rubric, labelling guide |
 | `data/posts/` | The 440 posts with labels (`posts_440.jsonl`), post-level metadata, strict-subset flags, selection funnel |
 | `data/llm_answers/` | Prompts and all raw LLM answers |
@@ -43,7 +43,7 @@ Everything in `results/` was computed from `data/judge_scores/` and `data/length
 ## Citation
 
 ```
-Muhammad (2026). Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback. Manuscript in preparation.
+Haseeb, M., & Khurshid, A. (2026). Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback. Manuscript in preparation.
 ```
 
 ## License
