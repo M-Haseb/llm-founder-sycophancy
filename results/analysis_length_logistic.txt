@@ -1,0 +1,19 @@
+﻿validation: llm coef(logit) 1.21 [0.88,1.57]  AME(pp) 29.3 [21.4,36.9]  loglen coef 0.36 | within-human slope 0.49 [0.29,0.68] within-LLM slope 0.14 [-0.19,0.45]
+   human by words (<60,60-120,120-250,250+): 15%(n401) 21%(n404) 28%(n229) 32%(n93) 
+   LLM by words (<450,450-600,600-800,800+): 55%(n417) 66%(n736) 70%(n660) 56%(n347) 
+indirectness: llm coef(logit) 0.56 [0.16,0.97]  AME(pp) 9.9 [3.1,15.7]  loglen coef -0.70 | within-human slope -0.14 [-0.31,0.03] within-LLM slope -2.37 [-2.92,-1.93]
+   human by words (<60,60-120,120-250,250+): 50%(n401) 46%(n404) 47%(n229) 40%(n93) 
+   LLM by words (<450,450-600,600-800,800+): 47%(n417) 42%(n736) 12%(n660) 10%(n347) 
+framing_acceptance: llm coef(logit) 1.61 [1.28,1.96]  AME(pp) 37.5 [30.0,44.3]  loglen coef -0.83 | within-human slope -0.47 [-0.65,-0.28] within-LLM slope -1.76 [-2.16,-1.43]
+   human by words (<60,60-120,120-250,250+): 77%(n401) 72%(n404) 60%(n229) 58%(n93) 
+   LLM by words (<450,450-600,600-800,800+): 87%(n417) 77%(n736) 63%(n660) 56%(n347) 
+risk_flagging: llm coef(logit) -0.75 [-1.22,-0.32]  AME(pp) -7.2 [-10.4,-3.4]  loglen coef 0.98 | within-human slope 0.57 [0.39,0.78] within-LLM slope 2.38 [1.90,2.88]
+   human by words (<60,60-120,120-250,250+): 54%(n401) 65%(n404) 73%(n229) 78%(n93) 
+   LLM by words (<450,450-600,600-800,800+): 70%(n417) 80%(n736) 93%(n660) 98%(n347) 
+evidence_request: llm coef(logit) 0.41 [0.04,0.81]  AME(pp) 9.8 [1.0,18.7]  loglen coef 0.84 | within-human slope 0.49 [0.23,0.75] within-LLM slope 1.26 [0.94,1.59]
+   human by words (<60,60-120,120-250,250+): 8%(n401) 12%(n404) 16%(n229) 22%(n93) 
+   LLM by words (<450,450-600,600-800,800+): 35%(n417) 45%(n736) 52%(n660) 63%(n347) 
+premise_challenge: llm coef(logit) -1.34 [-1.75,-0.97]  AME(pp) -31.7 [-40.0,-23.3]  loglen coef 0.91 | within-human slope 0.51 [0.33,0.72] within-LLM slope 1.82 [1.46,2.20]
+   human by words (<60,60-120,120-250,250+): 18%(n401) 27%(n404) 37%(n229) 37%(n93) 
+   LLM by words (<450,450-600,600-800,800+): 15%(n417) 28%(n736) 43%(n660) 52%(n347) 
+

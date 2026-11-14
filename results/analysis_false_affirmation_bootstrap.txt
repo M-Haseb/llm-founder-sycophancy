@@ -1,0 +1,33 @@
+=== FALSE-AFFIRMATION RATE (stance=supportive), critical-consensus posts (posts=146) anthropic/claude-haiku-5.5            15.1%  95% CI [9.6%, 21.2%]
+deepseek/deepseek-v4.1-flash          13.0%  95% CI [7.5%, 18.5%]
+google/gemini-3.5-flash-lite          26.7%  95% CI [19.9%, 34.2%]
+meta-llama/llama-3.3-70b-instruct     39.7%  95% CI [32.2%, 47.9%]
+openai/gpt-5.6-luna                   11.6%  95% CI [6.8%, 17.1%]
+--- paired differences (row minus column), percentage points, 95% CI
+claude-haiku-5.5 - deepseek-v4.1-flash: +2.1 pp [-3.4, +7.5]
+claude-haiku-5.5 - gemini-3.5-flash-lite: -11.6 pp [-18.5, -5.5]  *CI excludes 0
+claude-haiku-5.5 - llama-3.3-70b-instruct: -24.7 pp [-32.9, -16.4]  *CI excludes 0
+claude-haiku-5.5 - gpt-5.6-luna: +3.4 pp [-1.4, +8.9]
+deepseek-v4.1-flash - gemini-3.5-flash-lite: -13.7 pp [-19.9, -7.5]  *CI excludes 0
+deepseek-v4.1-flash - llama-3.3-70b-instruct: -26.7 pp [-35.6, -17.8]  *CI excludes 0
+deepseek-v4.1-flash - gpt-5.6-luna: +1.4 pp [-4.1, +6.8]
+gemini-3.5-flash-lite - llama-3.3-70b-instruct: -13.0 pp [-21.9, -4.1]  *CI excludes 0
+gemini-3.5-flash-lite - gpt-5.6-luna: +15.1 pp [+8.9, +21.9]  *CI excludes 0
+llama-3.3-70b-instruct - gpt-5.6-luna: +28.1 pp [+19.9, +36.3]  *CI excludes 0
+ 
+ === robustness: strict-subset critical posts (posts=52) anthropic/claude-haiku-5.5            15.4%  95% CI [5.8%, 25.0%]
+deepseek/deepseek-v4.1-flash          13.5%  95% CI [5.8%, 23.1%]
+google/gemini-3.5-flash-lite          28.8%  95% CI [17.3%, 40.4%]
+meta-llama/llama-3.3-70b-instruct     50.0%  95% CI [36.5%, 63.5%]
+openai/gpt-5.6-luna                    7.7%  95% CI [1.9%, 15.4%]
+--- paired differences (row minus column), percentage points, 95% CI
+claude-haiku-5.5 - deepseek-v4.1-flash: +1.9 pp [-7.7, +11.5]
+claude-haiku-5.5 - gemini-3.5-flash-lite: -13.5 pp [-26.9, +0.0]
+claude-haiku-5.5 - llama-3.3-70b-instruct: -34.6 pp [-50.0, -19.2]  *CI excludes 0
+claude-haiku-5.5 - gpt-5.6-luna: +7.7 pp [+0.0, +17.3]
+deepseek-v4.1-flash - gemini-3.5-flash-lite: -15.4 pp [-26.9, -3.8]  *CI excludes 0
+deepseek-v4.1-flash - llama-3.3-70b-instruct: -36.5 pp [-51.9, -21.2]  *CI excludes 0
+deepseek-v4.1-flash - gpt-5.6-luna: +5.8 pp [-1.9, +15.4]
+gemini-3.5-flash-lite - llama-3.3-70b-instruct: -21.2 pp [-36.5, -5.8]  *CI excludes 0
+gemini-3.5-flash-lite - gpt-5.6-luna: +21.2 pp [+11.5, +32.7]  *CI excludes 0
+llama-3.3-70b-instruct - gpt-5.6-luna: +42.3 pp [+26.9, +55.8]  *CI excludes 0

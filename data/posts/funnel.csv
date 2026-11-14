@@ -1,0 +1,9 @@
+step,rows,note
+"1. posts passing basic + keyword + promo filters (all days fetched)",14341,"before sampling rule"
+"2. keep only days 1-7 of each month (sampling rule)",8442,"deviation from plan: done to save time"
+"3. after title de-duplication",8333,
+"4. random sample sent for reply fetching (3000 + 2000)",5000,"seeds 42 and 43"
+"5. posts with >=2 good human replies (top 3 kept)",2575,"pool for labelling (1566 + 1009)"
+"6. labelled by Claude Sonnet 5.5 (medium effort)",2575,"screen + consensus in one pass"
+"7. kept as idea-stage feedback requests",625,"149 critical / 335 mixed / 141 supportive"
+"8. FINAL dataset (all critical + 150 mixed + all supportive)",440,"deviation: quota 300/150/150 not reachable for critical or supportive"

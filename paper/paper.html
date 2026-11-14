@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback</title>
+<style>
+@page{size:A4;margin:22mm 20mm}
+body{font-family:"Times New Roman",Times,serif;font-size:11.5pt;line-height:1.45;color:#000}
+h1{font-size:17pt;text-align:center;margin:0 0 6pt}
+.au{text-align:center;margin:0 0 14pt;font-size:11pt}
+h2{font-size:13pt;margin:16pt 0 4pt;break-after:avoid}
+h3{font-size:11.5pt;font-style:italic;margin:10pt 0 3pt;break-after:avoid}
+p{margin:0 0 7pt;text-align:justify}
+.abs{margin:0 14mm 8pt}
+table{border-collapse:collapse;margin:4pt auto 4pt;font-size:10pt;width:100%}
+th,td{padding:2.5pt 5pt;text-align:left}
+thead tr{border-top:1.2pt solid #000;border-bottom:0.8pt solid #000}
+tbody tr:last-child{border-bottom:1.2pt solid #000}
+td.n,th.n{text-align:right}
+.cap{font-size:10pt;margin:10pt 0 2pt;break-after:avoid}
+.note{font-size:9.5pt;margin:2pt 0 10pt}
+figure{margin:8pt 0 10pt;break-inside:avoid}
+figure svg{width:100%;height:auto}
+.ref{padding-left:24pt;text-indent:-24pt;font-size:10.5pt;text-align:left}
+.tbl{break-inside:avoid}
+.ph{background:#fff3b0}
+</style></head><body>
+
+<h1>Do LLMs Flatter Founders? Sycophancy in Business-Idea Feedback</h1>
+<div class="au">Muhammad<br><span class="ph">[Affiliation and contact to be added]</span><br>Draft manuscript, version 2, November 2026</div>
+
+<h2>Abstract</h2>
+<p class="abs">People ask chatbots to judge their business ideas, but no measured study has asked whether the chatbots flatter them. We extend the ELEPHANT approach to social sycophancy (Cheng et al., 2026a) to business-idea feedback and separate three things it can mean here: interpersonal validation, epistemic acceptance of the founder's assumptions, and evaluative support for an idea that others judged weak. We compared five LLMs (single-turn, no system prompt; 2,160 answers) with 1,127 human replies to 432 idea-stage posts from three Reddit communities (2015 to 2022). One frozen-rubric LLM judge scored everything; agreement with 40 hand labels was moderate to substantial for stance, validation and framing (kappa 0.60 to 0.72). LLMs validated founders 42.4 percentage points more often than human commenters (95% CI 39.1 to 45.7). This gap survived two length controls (regression adjustment, and re-scoring only the first 80 words of each answer, which gave +35.4 points), although LLM answers were about seven times longer than human replies. Other differences did not survive. Apparent LLM advantages in flagging risks and requesting evidence disappeared at matched length, premise challenges became less frequent than in human replies, and indirectness and framing acceptance changed with length. On the 146 posts where humans were critical, 21% of LLM answers were supportive (12% to 40% by model). The robust finding is warmth, not extra analytic rigour or uniform agreement. The baseline is human opinion, not verified viability, and a single judge scored all texts.</p>
+<p class="abs"><i>Keywords:</i> sycophancy, large language models, business advice, LLM-as-judge, social sycophancy, response length, Reddit</p>
+
+<h2>1. Introduction</h2>
+<p>People ask AI chatbots whether their business plan is any good. The answer matters, because money, time and jobs are committed on the strength of it. If a model tells founders what they want to hear, the cost lands on the founder, not the model.</p>
+<p>Research on sycophancy began with explicit agreement: a model abandons a correct answer when a user pushes back or states an opinion (Sharma et al., 2024; Hong et al., 2026). That framing needs a ground-truth answer, so it covers only a small part of real use. Cheng et al. (2026a) widened the question to <i>social sycophancy</i>, the excessive preservation of a user's desired self-image, or &ldquo;face.&rdquo; Their ELEPHANT benchmark measures validation, indirectness and acceptance of the user's framing, and found that LLMs preserved face about 45 percentage points more than humans on advice queries. One interaction with a sycophantic model reduced people's willingness to repair conflicts, while people still trusted and preferred it (Cheng et al., 2025). Models appear to assume that users want validation (Cheng et al., 2026b), and failures to challenge users have been linked to defaulting to accommodating their assumptions (Cheng et al., 2026c). A recent survey argues that sycophancy is a family of distinct behaviours, and gives a flawed business plan called &ldquo;brilliant&rdquo; as a motivating example (Kasprova et al., 2026). We found no peer-reviewed measurement for business-idea feedback in our search of November 2026, which was not exhaustive.</p>
+<h3>1.1 Three senses of sycophancy in business feedback</h3>
+<p>The ELEPHANT dimensions need not move together, and in business feedback they carry different risks. We therefore distinguish three senses. <b>Interpersonal sycophancy</b> is emotional: reassuring or praising the founder (validation). <b>Epistemic sycophancy</b> is about content: accepting the founder's assumptions instead of challenging them (framing acceptance). <b>Evaluative sycophancy</b> is about the verdict: backing an idea that independent judges considered weak (supportive stance on human-critical posts). Indirectness, avoiding a clear recommendation, is a style feature that can serve any of the three. A founder can receive warm words and a hard verdict, or cold words and an uncritical one. Treating these as one score would hide that.</p>
+<h3>1.2 Questions and hypotheses</h3>
+<p>The original research plan had five questions; this paper reports the three that were completed and renumbers them. The planned wording experiment and participant survey are future work.</p>
+<p><b>RQ1.</b> How much more do LLMs show validation (interpersonal), framing acceptance (epistemic) and indirectness than human commenters, and does this survive control for answer length?<br>
+<b>RQ2 (primary).</b> On posts where humans were critical, how often do LLMs still respond supportively? We call this the supportive-response rate on human-critical posts, abbreviated FAR (false-affirmation rate), a measure of model behaviour and not a verdict that the ideas were bad.<br>
+<b>RQ3.</b> Do LLMs flag concrete risks, ask for market evidence and challenge the premise as often as humans do, again after controlling for length?</p>
+<p><b>H1.</b> LLMs show more validation and more framing acceptance than human commenters. <b>H2.</b> A non-trivial share of LLM answers is supportive on human-critical posts, and this share varies across models. (The human reference is near zero by construction, see 3.3, so H2 is descriptive.) <b>H3 (exploratory, two-sided).</b> LLMs differ from humans in risk flagging, evidence requests and premise challenges; the direction is open. Per-model differences are exploratory throughout.</p>
+<p>Our contributions are (a) a 432-post business-feedback dataset with human replies, (b) a frozen, validated judging protocol with an explicit circularity guard, (c) a length-controlled comparison of LLM and human feedback, and (d) a three-way distinction between kinds of sycophancy that shows which findings are robust to length and which are not.</p>
+
+<h2>2. Related Work</h2>
+<p><b>Explicit sycophancy.</b> Sharma et al. (2024) showed that five AI assistants repeatedly shifted answers toward user beliefs, and that human preference judgments favoured sycophantic responses a non-negligible fraction of the time. Hong et al. (2026) studied sycophancy across multi-turn dialogues. Both rely on factual or ethical ground truth.</p>
+<p><b>Social sycophancy.</b> ELEPHANT (Cheng et al., 2026a) defines face-preserving behaviours that need no ground truth and uses human responses as the baseline. We reuse its three behavioural dimensions and compare against human replies, in a new domain.</p>
+<p><b>Mechanisms and consequences.</b> Cheng et al. (2026b) attribute sycophancy partly to wrong assumptions about what users want, and Cheng et al. (2026c) frame it as a lack of epistemic vigilance. Cheng et al. (2025) show users trust and prefer flattering AI even when it distorts judgment. Kasprova et al. (2026) argue sycophancy is not one behaviour. Our three-sense distinction (1.1) follows that line and applies it to feedback on a founder's own idea.</p>
+<p><b>Why business ideas differ from personal advice.</b> Three features set this decision environment apart. The author is invested in the idea and is often asking for confirmation, so there is more pressure to preserve face. The cost of error is financial and falls on the author and others who rely on the plan. And useful feedback is analytic (market, pricing, customers), so a response can be emotionally warm and still be, or fail to be, substantively demanding. <span class="ph">[LITERATURE NEEDED: sources on entrepreneurial opportunity evaluation, AI decision support, algorithmic overreliance and constructive criticism. None were supplied, so none are cited; this paragraph is argument, not review.]</span></p>
+
+<h2>3. Method</h2>
+<h3>3.1 Dataset</h3>
+<p>We used offline Reddit archives (Pushshift-derived dumps via Arctic Shift), because new public API access had closed. Posts came from r/startups, r/Entrepreneur and r/smallbusiness, dated 1 January 2015 to 1 November 2022, so replies are very unlikely to be AI-written (the posts themselves may still appear in model training data). Table 1 gives the funnel. Rules removed deleted, short and promotional posts and duplicates, and required at least two high-quality top-level replies (score of 2 or more, 30 or more words, not a bot; top three by score kept). Claude Sonnet 5.5 (medium effort) screened each remaining post for being an idea-stage request for feedback on the author's own idea and assigned a human-consensus label (supportive, mixed or critical) from the replies. For time reasons we sampled only days 1 to 7 of each month, a deviation from the plan.</p>
+<p>The final dataset deliberately over-samples critical and supportive posts: it takes all 149 critical and all 141 supportive posts that passed screening, and a random 150 of the 335 mixed posts (the planned quota of 300 critical and 150 supportive posts could not be reached). Eight posts (3 critical, 2 mixed, 3 supportive) were used to tune the judge and are excluded from analysis, leaving 432 posts.</p>
+<div class="tbl"><p class="cap"><b>Table 1</b><br><i>Dataset funnel</i></p>
+<table><thead><tr><th>Step</th><th class="n">Posts</th></tr></thead><tbody>
+<tr><td>Passing basic, keyword and promotion filters</td><td class="n">14,341</td></tr>
+<tr><td>Days 1 to 7 of each month; after title de-duplication</td><td class="n">8,442; 8,333</td></tr>
+<tr><td>Random sample sent for reply fetching</td><td class="n">5,000</td></tr>
+<tr><td>With at least 2 good human replies</td><td class="n">2,575</td></tr>
+<tr><td>Kept as idea-stage feedback requests (149 critical, 335 mixed, 141 supportive)</td><td class="n">625</td></tr>
+<tr><td>Final dataset (149 critical + 150 random mixed + 141 supportive)</td><td class="n">440</td></tr>
+<tr><td>Analysed after excluding 8 judge-tuning posts (146 critical, 148 mixed, 138 supportive)</td><td class="n">432</td></tr>
+</tbody></table>
+<p class="note"><i>Note.</i> Human replies on the analysed posts total 1,127 (mean 2.6 per post).</p></div>
+<p>The Sonnet screen and consensus label were checked against the author's own labels on 50 posts each. Consensus labels agreed on 47 of 50 posts (kappa about 0.91). Agreement on the post filter was weak (kappa 0.32), so some posts may not be ideal feedback requests; we report a stricter subset as a robustness check.</p>
+
+<h3>3.2 Models and answer collection</h3>
+<p>Each post (title and body, exactly as written) was sent to five models through OpenRouter on 13 November 2026, with no system prompt, temperature 0 and a maximum of 3,000 output tokens. Reasoning was set to low where available (off for DeepSeek, not applicable to Llama). Table 2 lists the models; short names such as &ldquo;luna&rdquo; refer to the full IDs shown. Seven answers (six from Haiku, one from DeepSeek) were truncated at 3,000 tokens and regenerated with a limit of 8,000, giving 2,200 complete answers (440 per model); 2,160 fall on the analysed posts. The raw first run is preserved unmodified.</p>
+<div class="tbl"><p class="cap"><b>Table 2</b><br><i>Models tested and answer length</i></p>
+<table><thead><tr><th>Short name</th><th>Model ID (OpenRouter)</th><th class="n">Median words</th></tr></thead><tbody>
+<tr><td>luna</td><td>openai/gpt-5.6-luna</td><td class="n">694</td></tr>
+<tr><td>Gemini-lite</td><td>google/gemini-3.5-flash-lite</td><td class="n">664</td></tr>
+<tr><td>DeepSeek</td><td>deepseek/deepseek-v4.1-flash</td><td class="n">643</td></tr>
+<tr><td>Haiku</td><td>anthropic/claude-haiku-5.5</td><td class="n">541</td></tr>
+<tr><td>Llama</td><td>meta-llama/llama-3.3-70b-instruct</td><td class="n">476</td></tr>
+<tr><td colspan="2"><i>Human replies (n = 1,127)</i></td><td class="n">79</td></tr>
+</tbody></table></div>
+
+<h3>3.3 Measures and judge</h3>
+<p>Every human reply and LLM answer was scored on seven items: validation, indirectness and framing acceptance (adapted from ELEPHANT), and stance (supportive, mixed, critical), risk flagging, evidence request and premise challenge (new). Each binary item asks one yes/no question, for example whether the text reassures the author's feelings or self-image (validation), or accepts the author's assumptions without challenge (framing acceptance). The judge was Claude Sonnet 5.5 run as parallel agents, each scoring blinded batches under a rubric tuned on 8 held-out posts and then frozen (SHA-256 recorded, 13 November 2026, before any scoring). Items had anonymous IDs, with the source key held separately. Two tuning runs agreed with kappa 0.79 to 1.00. We designate <b>stance, validation and framing acceptance as the validated measures</b>, because only these were checked against hand labels. Indirectness, risk flagging, evidence request and premise challenge are <b>exploratory</b>.</p>
+<p><b>Primary outcome and circularity guard.</b> FAR is the share of a model's answers with a supportive stance on critical-consensus posts. Critical posts are chosen by the human label, so the human supportive rate there is near zero by construction and is not an independent estimate. The validation, indirectness and framing comparisons (RQ1) are therefore the non-circular result, and FAR is reported as model behaviour on posts humans disliked, not as a population rate.</p>
+<p><b>What the baseline is.</b> &ldquo;Human-critical&rdquo; means that Reddit commenters judged the idea harshly. It does not mean the idea was objectively poor. We separate three notions: agreement with human opinion (what FAR measures), emotional validation of the founder (what validation measures), and objectively assessed viability, which this study does not measure.</p>
+
+<h3>3.4 Judge validation</h3>
+<p>We validated the judge three ways. (1) The author hand-labelled 40 LLM answers (8 per model) for stance, validation and framing acceptance, blind to the judge. (2) A second judge (ChatGPT, self-reported as &ldquo;GPT-6&rdquo;) re-scored a 100-answer sample (20 per model). (3) To check that the judge treats human and LLM text alike, 100 LLM answers were mixed into the human-reply batches and scored again.</p>
+
+<h3>3.5 Analysis and length controls</h3>
+<p>The unit of analysis is the post, and posts are the resampling unit in every interval, because the five answers and the two to three human replies for a post are not independent. For each post we took the LLM mean minus the mean over its human replies on each binary measure, then averaged over posts; intervals are 95% percentile bootstrap intervals (10,000 resamples of posts, seed 20261113). &ldquo;Pooled&rdquo; is the mean of the five models. Uncertainty in the human mean for a post, which rests on only two or three replies, is carried by the post-level resampling. Judge misclassification is not propagated into the intervals.</p>
+<p>LLM answers are far longer than human replies (Table 2), and length alone could raise validation, risk mentions and evidence requests. We ran two controls. <b>(a) Regression adjustment.</b> A logistic model for each measure with an LLM indicator and log word count, reported as the average marginal effect of being an LLM answer, with cluster bootstrap intervals (1,000 resamples of posts). Because the length distributions barely overlap (the 10th percentile of LLM length is above the 90th percentile of human length), this adjustment extrapolates and is a supporting analysis only. <b>(b) Matched-length rescoring.</b> For 96 randomly drawn posts (480 answers) we cut each LLM answer to its first 80 words, close to the human median of 79 words, and scored the excerpts blind with the same frozen rubric, mixed across posts and models. We compared them with the 253 human replies on those posts. The excerpt method front-loads openings, so it probably overstates validation and understates risk and evidence content that appears later; we therefore read it together with the full-answer results as a bracket.</p>
+<p>As a further robustness check we repeated FAR on a stricter subset of 174 posts (52 critical). Analyses are single-run and were not corrected for multiple comparisons; the pre-specified headline tests are validation (RQ1) and FAR (RQ2), and all other measures and all per-model contrasts are exploratory. We did not fit mixed-effects models.</p>
+
+<figure>
+<svg id="fig0" viewBox="0 0 700 150" font-family="Arial,Helvetica,sans-serif" font-size="12"></svg>
+<p class="cap"><b>Figure 1.</b> Study pipeline. Posts and human replies come from Reddit archives; the same post is sent to five LLMs; one frozen-rubric judge scores every reply and answer on seven measures; a post-level bootstrap gives all intervals.</p>
+</figure>
+
+<h2>4. Results</h2>
+<h3>4.1 Judge validity</h3>
+<p>Table 3 summarises agreement. Against the author's labels, the Sonnet judge reached 75% agreement (kappa 0.60) on stance, 90% (0.72) on validation and 88% (0.71) on framing acceptance. It never confused supportive with critical, and it slightly under-called supportive (16 against 18 by the author), so false-affirmation estimates are if anything conservative. The second judge agreed less with the author (kappa 0.36, 0.48, 0.48) and with Sonnet on 100 answers (stance 73%, kappa 0.55; validation 0.48; indirectness 0.38; framing 0.55; risk flagging 0.26; evidence request 0.69; premise challenge 0.31). Agreement between first and repeat scoring in the calibration check was 85% to 98% (kappa 0.62 to 0.84; stance 0.78). The weak second-judge agreement on the exploratory measures is a reason to read them cautiously, and our preset rule would treat any measure with judge-human kappa below 0.6 as unreliable. The excerpt scoring used in 3.5(b) was not hand-checked.</p>
+<div class="tbl"><p class="cap"><b>Table 3</b><br><i>Judge agreement (Cohen's kappa)</i></p>
+<table><thead><tr><th>Comparison</th><th class="n">Stance</th><th class="n">Validation</th><th class="n">Framing</th></tr></thead><tbody>
+<tr><td>Sonnet vs author (n = 40)</td><td class="n">0.60</td><td class="n">0.72</td><td class="n">0.71</td></tr>
+<tr><td>Second judge vs author (n = 40)</td><td class="n">0.36</td><td class="n">0.48</td><td class="n">0.48</td></tr>
+<tr><td>Sonnet vs second judge (n = 100)</td><td class="n">0.55</td><td class="n">0.48</td><td class="n">0.55</td></tr>
+<tr><td>Sonnet repeat scoring (n = 100)</td><td class="n">0.78</td><td class="n" colspan="2">0.62 to 0.84 across measures</td></tr>
+</tbody></table>
+<p class="note"><i>Note.</i> The hand-label sample is small, so intervals around these kappas are wide.</p></div>
+
+<h3>4.2 RQ1 and RQ3 at full answer length</h3>
+<p>Table 4 gives the full-answer comparison. LLMs validated the author in 63.7% of answers against 21.3% of human replies, a pooled difference of +42.4 points (CI +39.1 to +45.7). Framing acceptance did not differ (70.7% against 71.3%; +0.7, CI &minus;3.1 to +4.4). Indirectness was lower for LLMs (&minus;18.4). LLMs also named specific risks (+21.7) and asked for market evidence (+35.2) more often, and challenged premises slightly more (+7.1). Model-level estimates with intervals are in Appendix A. They are very heterogeneous: validation ranged from +9.3 (luna) to +58.6 (Gemini-lite and Llama), and Llama accepted framing 26.8 points more than humans while DeepSeek (&minus;19.5) and luna (&minus;12.3) challenged more.</p>
+<div class="tbl"><p class="cap"><b>Table 4</b><br><i>Human and LLM rates at full length, and per-post differences</i></p>
+<table><thead><tr><th>Measure</th><th class="n">Human %</th><th class="n">LLM %</th><th class="n">Difference, pp [95% CI]</th></tr></thead><tbody>
+<tr><td>Validation (validated)</td><td class="n">21.3</td><td class="n">63.7</td><td class="n">+42.4 [+39.1, +45.7]</td></tr>
+<tr><td>Framing acceptance (validated)</td><td class="n">70.7</td><td class="n">71.3</td><td class="n">+0.7 [&minus;3.1, +4.4]</td></tr>
+<tr><td>Stance: supportive (validated)</td><td class="n">29.7</td><td class="n">37.4</td><td class="n">+7.7 [+4.1, +11.3]</td></tr>
+<tr><td>Stance: critical (validated)</td><td class="n">23.5</td><td class="n">7.2</td><td class="n">&minus;16.3 [&minus;19.5, &minus;13.2]</td></tr>
+<tr><td>Indirectness (exploratory)</td><td class="n">47.1</td><td class="n">28.7</td><td class="n">&minus;18.4 [&minus;22.1, &minus;14.9]</td></tr>
+<tr><td>Risk flagging (exploratory)</td><td class="n">63.4</td><td class="n">85.1</td><td class="n">+21.7 [+18.1, +25.3]</td></tr>
+<tr><td>Evidence request (exploratory)</td><td class="n">12.8</td><td class="n">48.0</td><td class="n">+35.2 [+31.8, +38.7]</td></tr>
+<tr><td>Premise challenge (exploratory)</td><td class="n">26.8</td><td class="n">33.9</td><td class="n">+7.1 [+3.4, +10.8]</td></tr>
+</tbody></table>
+<p class="note"><i>Note.</i> 432 posts, 1,127 human replies, five models pooled. Differences are LLM minus human, averaged over posts.</p></div>
+
+<h3>4.3 Does length explain the differences?</h3>
+<p>LLM answers had a median of 476 to 694 words against 79 for human replies, with almost no overlap. Within human replies, validation rose with length (15% under 60 words, 32% above 250 words), but within LLM answers it was flat (55% to 70% across 360 to 1,200 words), so length does not by itself drive the LLM validation rate. Figure 2 and Table 5 show three views of each difference: the raw full-answer gap, the length-adjusted regression estimate, and the matched-length estimate from the first 80 words of each answer.</p>
+<p><b>Validation is robust.</b> The gap was +42.4 points raw, +29.3 after regression adjustment (CI +21.4 to +36.9), and +35.4 at matched length (CI +28.0 to +42.6). In the matched sample 56.3% of 80-word LLM excerpts were validating, against 20.2% of human replies. The conclusion that LLMs validate founders far more than humans does not depend on length.</p>
+<p><b>The other differences depend on length.</b> The full-length advantages for risk flagging (+21.7) and evidence requests (+35.2) vanished at matched length (&minus;4.1, CI &minus;12.7 to +4.3; and &minus;2.6, CI &minus;8.0 to +2.5), and regression adjustment gave a negative risk effect. Premise challenges, slightly more frequent in full LLM answers (+7.1), were clearly less frequent at matched length (&minus;16.0, CI &minus;23.3 to &minus;8.9). Indirectness reversed sign: LLMs were less indirect at full length (&minus;18.4) but more indirect at matched length (+10.2, CI +2.5 to +18.3), so the lower indirectness reflects longer, more explicit answers. Framing acceptance, no different at full length (+0.7), was higher at matched length (+12.8, CI +5.1 to +20.6) and higher after regression adjustment (+37.5). Interpretation needs care because the excerpt front-loads openings and the regression extrapolates, but the pattern is consistent: the more analytic behaviours of LLM answers follow from having more words, and where length is held roughly equal the LLM openings validate more, accept framing more, and challenge premises less than human replies.</p>
+<div class="tbl"><p class="cap"><b>Table 5</b><br><i>Three views of the LLM minus human difference (percentage points)</i></p>
+<table><thead><tr><th>Measure</th><th class="n">Full length (432 posts)</th><th class="n">Length-adjusted (AME)</th><th class="n">First 80 words (96 posts)</th></tr></thead><tbody>
+<tr><td>Validation</td><td class="n">+42.4</td><td class="n">+29.3 [21.4, 36.9]</td><td class="n">+35.4 [28.0, 42.6]</td></tr>
+<tr><td>Framing acceptance</td><td class="n">+0.7</td><td class="n">+37.5 [30.0, 44.3]</td><td class="n">+12.8 [5.1, 20.6]</td></tr>
+<tr><td>Indirectness</td><td class="n">&minus;18.4</td><td class="n">+9.9 [3.1, 15.7]</td><td class="n">+10.2 [2.5, 18.3]</td></tr>
+<tr><td>Risk flagging</td><td class="n">+21.7</td><td class="n">&minus;7.2 [&minus;10.4, &minus;3.4]</td><td class="n">&minus;4.1 [&minus;12.7, +4.3]</td></tr>
+<tr><td>Evidence request</td><td class="n">+35.2</td><td class="n">+9.8 [1.0, 18.7]</td><td class="n">&minus;2.6 [&minus;8.0, +2.5]</td></tr>
+<tr><td>Premise challenge</td><td class="n">+7.1</td><td class="n">&minus;31.7 [&minus;40.0, &minus;23.3]</td><td class="n">&minus;16.0 [&minus;23.3, &minus;8.9]</td></tr>
+</tbody></table>
+<p class="note"><i>Note.</i> The first column repeats Table 4 (intervals there). Adjusted estimates come from logistic regressions on an LLM indicator and log word count, with cluster bootstrap intervals; they extrapolate across non-overlapping lengths. Matched-length estimates compare the first 80 words of 480 LLM answers with 253 human replies on 96 random posts. Only validation and framing acceptance are validated measures.</p></div>
+<figure>
+<svg id="fig2" viewBox="0 0 700 360" font-family="Arial,Helvetica,sans-serif" font-size="12"></svg>
+<p class="cap"><b>Figure 2.</b> LLM minus human difference (percentage points) under three views: full answers, regression-adjusted for length, and first 80 words only (95% bootstrap intervals). Only validation keeps the same sign and a similar size in all three views. Risk flagging and evidence requests lose their full-length advantage, and premise challenge, indirectness and framing change.</p>
+</figure>
+
+<h3>4.4 RQ2: supportive-response rate on human-critical posts</h3>
+<p>On the 146 critical-consensus posts, the pooled share of supportive LLM answers was 21.2% (155 of 730). Figure 3 shows the rate by model: luna 11.6%, DeepSeek 13.0%, Haiku 15.1%, Gemini-lite 26.7% and Llama 39.7%. The ordering was unchanged in the strict subset (52 critical posts): luna 7.7%, DeepSeek 13.5%, Haiku 15.4%, Gemini-lite 28.8%, Llama 50.0%. The rate is not an artefact of length: among the 36 critical posts in the matched-length sample, 24.4% of 80-word excerpts were supportive against 20.0% of full answers. The human supportive rate on these posts is near zero by construction, so H2 is descriptive. The informative result is the size of the rate and its spread across models. It says how often models endorse ideas that Reddit disliked, not how often they endorse bad ideas.</p>
+<figure>
+<svg id="fig3" viewBox="0 0 700 250" font-family="Arial,Helvetica,sans-serif" font-size="12"></svg>
+<p class="cap"><b>Figure 3.</b> Supportive-response rate on human-critical posts (FAR): share of each model's answers with a supportive stance on the 146 posts where human consensus was critical (95% bootstrap CI over posts; pooled value shown without an interval).</p>
+</figure>
+<p>Across all consensus classes, LLMs were less responsive to the human signal than human replies were (Figure 4). The supportive rate in LLM answers was 21% on critical posts, 37% on mixed posts and 55% on supportive posts, against 0%, 20% and 78% for human replies. LLMs are compressed toward the middle: more supportive than humans where humans are critical, less supportive where humans are enthusiastic.</p>
+<figure>
+<svg id="fig4" viewBox="0 0 700 250" font-family="Arial,Helvetica,sans-serif" font-size="12"></svg>
+<p class="cap"><b>Figure 4.</b> Share of supportive-stance texts by human-consensus class, for human replies and LLM answers. The human rate for critical posts is near zero by construction.</p>
+</figure>
+
+<h2>5. Discussion</h2>
+<p>The robust result is interpersonal. LLMs reassure and praise founders far more than human commenters do, by about 35 to 42 percentage points depending on how length is handled, and this holds even when only the first 80 words are compared. The gap varies greatly by model (9 to 59 points at full length), so one pooled number should not be quoted without the range.</p>
+<p>The second result is that the epistemic and evaluative senses of sycophancy do not move with the interpersonal one in a simple way. At full length LLMs looked no more accepting of founders' assumptions than humans, and they asked for more evidence and named more risks. One could read that as warm language wrapped around a structured critique. The length controls do not support that reading. At matched length, the evidence and risk advantages disappear, premise challenges are less frequent, and framing acceptance is higher, which points the other way. We therefore draw a narrower conclusion: LLM answers contain more analytic content mainly because they are long, and their openings, the part that matches human replies in size, are more validating, more accepting of the founder's framing and less challenging of the premise than human replies. Which description applies to a given reader depends on how much of the answer is read, and we cannot say from this design.</p>
+<p>The evaluative sense is the one most tied to decisions. About one in five LLM answers was supportive on posts that Reddit commenters had judged critically, and about two in five for Llama. The compression across consensus classes (Figure 4) means a model also gives less enthusiasm than the crowd to ideas the crowd liked. Both effects say the models discriminate less between weak and strong ideas than the crowd does. They do not show that the crowd is right. A community may reject a viable idea, and a model may then be the better judge. Without expert viability ratings, human consensus is a benchmark of opinion, not of truth, and the 21% should not be read as the share of ideas that were objectively bad.</p>
+<p>Whether this pattern is sycophancy or a general difference in communication style is only partly resolved. Differences that persisted at matched length and track the human label (validation, supportive answers on critical posts) fit the face-preservation account in ELEPHANT. Differences that reverse with length (risk, evidence, indirectness) look more like style. The model-to-model spread supports a role for training, since models of similar length behaved differently, but this design cannot identify causes. We make no claim that any model is better overall. Models differ in size, reasoning setting and cost, and Haiku shares a vendor with the judge.</p>
+
+<h2>6. Limitations</h2>
+<p><b>Crowd as baseline.</b> Reddit replies are opinions, not proof that an idea was bad. Expert viability ratings were planned and not collected, so agreement with objective viability is unmeasured and sycophancy cannot be separated from general human-LLM disagreement.</p>
+<p><b>Judge.</b> One judge scored everything. Its agreement with the author was moderate (stance kappa 0.60, n = 40, wide interval), a second judge agreed less on several measures, and only three measures were checked against hand labels. The judge was not hand-validated on human replies or on the 80-word excerpts. One tested model (Haiku) shares a vendor with the judge, so same-family bias is possible. Judge error is not propagated into the intervals.</p>
+<p><b>Length.</b> Length overlap between humans and LLMs is minimal. The regression adjustment extrapolates, and the matched-length test uses opening excerpts of 96 posts, which favour validation and disfavour content that comes later. The excerpt test shows that the validation result is not a length artefact, but it cannot establish how a reader experiences the full answer. A fuller test would elicit length-matched answers by instruction, which we did not do.</p>
+<p><b>Selection and design.</b> Posts were drawn from days 1 to 7 of each month, agreement on the post filter was weak (kappa 0.32), and the quota for critical and supportive posts was not met. Critical posts are over-selected by design, so FAR is not a population rate. There were 2.6 human replies per post on average, and the 432-post sample is smaller than the 600 planned. We used cluster bootstrap intervals and did not fit mixed-effects models; confidence intervals are not corrected for the many exploratory contrasts.</p>
+<p><b>Models and prompts.</b> Single-turn, one prompt per post, one run at temperature 0, with reasoning settings that differ across models. Results are a snapshot of 13 November 2026 versions. Models may have seen these posts in training, which could narrow the gap. Seven truncated answers were regenerated at a higher token limit. The sample is English-language and mostly Western.</p>
+<p><b>Scope.</b> The wording experiment, the participant survey, the repeat-run noise check and a preregistration on a public registry were not completed. The hypotheses were fixed through the frozen rubric and the analysis plan, not an external time-stamp.</p>
+
+<h2>7. Conclusion</h2>
+<p>On business-idea feedback, LLMs validate founders far more than human commenters do (about +42 points at full length, +35 at matched length), and this finding survives length controls. Apparent LLM advantages in risk flagging and evidence requests depend on answer length, and at matched length LLM openings challenge the premise less than human replies. About one in five LLM answers is supportive on ideas that humans criticised, with a wide spread across models (12% to 40%). We contribute a first measured picture for this domain, a three-way distinction between interpersonal, epistemic and evaluative sycophancy, and a replicable frozen-rubric protocol. The most useful next steps are expert ratings of idea viability, hand validation of the judge on human replies and excerpts, and length-matched answers elicited by instruction.</p>
+
+<h2>Appendix A. Model-level differences at full length</h2>
+<div class="tbl"><p class="cap"><b>Table A1</b><br><i>LLM minus human difference by model, percentage points [95% CI]</i></p>
+<table style="font-size:8.8pt"><thead><tr><th>Measure</th><th class="n">luna</th><th class="n">DeepSeek</th><th class="n">Haiku</th><th class="n">Gemini-lite</th><th class="n">Llama</th></tr></thead><tbody>
+<tr><td>Validation</td><td class="n">+9.3 [4.8, 13.8]</td><td class="n">+48.1 [43.7, 52.7]</td><td class="n">+37.5 [32.6, 42.3]</td><td class="n">+58.6 [54.2, 62.9]</td><td class="n">+58.6 [54.1, 62.8]</td></tr>
+<tr><td>Framing acceptance</td><td class="n">&minus;12.3 [&minus;17.5, &minus;7.1]</td><td class="n">&minus;19.5 [&minus;24.5, &minus;14.6]</td><td class="n">+2.2 [&minus;2.5, 7.0]</td><td class="n">+6.2 [1.4, 10.9]</td><td class="n">+26.8 [23.3, 30.2]</td></tr>
+<tr><td>Indirectness</td><td class="n">&minus;29.7 [&minus;34.3, &minus;25.2]</td><td class="n">&minus;40.9 [&minus;44.8, &minus;37.0]</td><td class="n">&minus;23.3 [&minus;27.9, &minus;18.6]</td><td class="n">&minus;38.8 [&minus;42.8, &minus;34.8]</td><td class="n">+40.4 [35.7, 44.9]</td></tr>
+<tr><td>Risk flagging</td><td class="n">+30.8 [26.8, 34.8]</td><td class="n">+33.4 [29.6, 37.2]</td><td class="n">+27.6 [23.2, 31.9]</td><td class="n">+27.4 [23.2, 31.5]</td><td class="n">&minus;10.6 [&minus;15.5, &minus;5.6]</td></tr>
+<tr><td>Evidence request</td><td class="n">+53.2 [48.8, 57.6]</td><td class="n">+33.5 [28.7, 38.5]</td><td class="n">+50.4 [45.9, 54.9]</td><td class="n">+19.6 [15.2, 24.2]</td><td class="n">+19.4 [14.9, 23.9]</td></tr>
+<tr><td>Premise challenge</td><td class="n">+24.3 [19.1, 29.6]</td><td class="n">+23.2 [18.4, 27.9]</td><td class="n">+10.0 [5.0, 14.9]</td><td class="n">&minus;0.7 [&minus;5.4, 4.2]</td><td class="n">&minus;21.3 [&minus;25.1, &minus;17.5]</td></tr>
+</tbody></table>
+<p class="note"><i>Note.</i> 432 posts; 10,000 bootstrap resamples of posts. Per-model contrasts are exploratory and uncorrected for multiple comparisons.</p></div>
+
+<h2>References</h2>
+<p class="ref">Cheng, M., Hawkins, R. D., &amp; Jurafsky, D. (2026c). <i>Accommodation and epistemic vigilance: A pragmatic account of why LLMs fail to challenge harmful beliefs</i> (arXiv:2601.04435). arXiv.</p>
+<p class="ref">Cheng, M., Lee, C., Khadpe, P., Yu, S., Han, D., &amp; Jurafsky, D. (2025). <i>Sycophantic AI decreases prosocial intentions and promotes dependence</i> (arXiv:2510.01395). arXiv. <span class="ph">[Verify whether a journal version should be cited instead]</span></p>
+<p class="ref">Cheng, M., Sieh, I., Zope, H., Yu, S., Ibrahim, L., Arora, A., Moore, J., Ong, D., Jurafsky, D., &amp; Yang, D. (2026b). Verbalizing LLMs' assumptions to explain and control sycophancy. <i>Proceedings of COLM 2026</i> (arXiv:2604.03058).</p>
+<p class="ref">Cheng, M., Yu, S., Lee, C., Khadpe, P., Ibrahim, L., &amp; Jurafsky, D. (2026a). ELEPHANT: Measuring and understanding social sycophancy in LLMs. <i>International Conference on Learning Representations (ICLR 2026)</i> (arXiv:2505.13995).</p>
+<p class="ref">Hong, J., Byun, G., Kim, S., Shu, K., &amp; Choi, J. D. (2026). <i>Measuring sycophancy of language models in multi-turn dialogues</i> (arXiv:2505.23840). arXiv.</p>
+<p class="ref">Kasprova, V., He, J., Hakkani-T&uuml;r, D., &amp; Kindratenko, V. (2026). Sycophancy in language models: A survey across behaviors and topologies. <i>ACM Computing Surveys</i>. <span class="ph">[Manuscript submitted; update status before submission]</span></p>
+<p class="ref">Sharma, M., Tong, M., Korbak, T., Duvenaud, D., Askell, A., Bowman, S. R., Cheng, N., Durmus, E., Hatfield-Dodds, Z., Johnston, S. R., Kravec, S., Maxwell, T., McCandlish, S., Ndousse, K., Rausch, O., Schiefer, N., Yan, D., Zhang, M., &amp; Perez, E. (2024). Towards understanding sycophancy in language models. <i>International Conference on Learning Representations (ICLR 2024)</i> (arXiv:2310.13548).</p>
+
+<script>
+const ns="http://www.w3.org/2000/svg";
+function E(p,t,a,txt){const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!==undefined)e.textContent=txt;p.appendChild(e);return e}
+const C={blue:"#2b5d8c",lblue:"#8fb4d6",grey:"#8a8a8a",ink:"#222"};
+(function(){const s=document.getElementById("fig0");
+const d=E(s,"defs",{});const m=E(d,"marker",{id:"ar",markerWidth:8,markerHeight:8,refX:6,refY:3,orient:"auto"});E(m,"path",{d:"M0 0 L6 3 L0 6 z",fill:C.ink});
+const boxes=[["Reddit archives","440 posts (432 analysed)","1,127 human replies"],["5 LLMs","no system prompt","temp 0, 2,160 answers"],["Judge (frozen rubric)","7 measures","blinded batches"],["Analysis","per-post differences","length controls, bootstrap"]];
+boxes.forEach((b,i)=>{const x=10+i*172;E(s,"rect",{x:x,y:30,width:150,height:80,rx:6,fill:"#eef3f8",stroke:C.blue});
+E(s,"text",{x:x+75,y:58,"text-anchor":"middle","font-weight":"bold",fill:C.ink},b[0]);
+E(s,"text",{x:x+75,y:78,"text-anchor":"middle",fill:C.ink},b[1]);E(s,"text",{x:x+75,y:95,"text-anchor":"middle",fill:C.ink},b[2]);
+if(i<3)E(s,"path",{d:"M"+(x+152)+" 70 L"+(x+168)+" 70",stroke:C.ink,"stroke-width":2,"marker-end":"url(#ar)"});});
+E(s,"text",{x:10,y:135,fill:"#555","font-size":11},"Human replies are scored by the same judge and rubric as the LLM answers.");})();
+(function(){const s=document.getElementById("fig2");
+const rows=[["Validation",[[42.4,39.1,45.7],[29.3,21.4,36.9],[35.4,28.0,42.6]]],["Framing acceptance",[[0.7,-3.1,4.4],[37.5,30.0,44.3],[12.8,5.1,20.6]]],["Indirectness",[[-18.4,-22.1,-14.9],[9.9,3.1,15.7],[10.2,2.5,18.3]]],["Risk flagging",[[21.7,18.1,25.3],[-7.2,-10.4,-3.4],[-4.1,-12.7,4.3]]],["Evidence request",[[35.2,31.8,38.7],[9.8,1.0,18.7],[-2.6,-8.0,2.5]]],["Premise challenge",[[7.1,3.4,10.8],[-31.7,-40.0,-23.3],[-16.0,-23.3,-8.9]]]];
+const cols=[C.grey,C.lblue,C.blue];const lab=["Full length","Length-adjusted","First 80 words"];
+const x0=160,w=500,lo=-45,hi=55,X=v=>x0+(v-lo)/(hi-lo)*w;
+for(let v=-40;v<=50;v+=10){E(s,"line",{x1:X(v),x2:X(v),y1:30,y2:300,stroke:v==0?"#000":"#e3e3e3","stroke-width":v==0?1.5:1});E(s,"text",{x:X(v),y:318,"text-anchor":"middle",fill:"#555"},(v>0?"+":"")+v);}
+rows.forEach((r,i)=>{const yb=50+i*42;E(s,"text",{x:150,y:yb+12,"text-anchor":"end",fill:C.ink},r[0]);
+r[1].forEach((q,j)=>{const y=yb+j*10;E(s,"line",{x1:X(q[1]),x2:X(q[2]),y1:y,y2:y,stroke:cols[j],"stroke-width":2.5});E(s,"circle",{cx:X(q[0]),cy:y,r:3.8,fill:cols[j]});});});
+lab.forEach((t,j)=>{E(s,"circle",{cx:200+j*150,cy:12,r:4,fill:cols[j]});E(s,"text",{x:210+j*150,y:16,"font-size":11},t);});
+E(s,"text",{x:x0+w/2,y:345,"text-anchor":"middle",fill:"#555"},"LLM minus human (percentage points)");})();
+(function(){const s=document.getElementById("fig3");const rows=[["luna",11.6,6.8,17.1],["DeepSeek",13.0,7.5,18.5],["Haiku",15.1,9.6,21.2],["Gemini-lite",26.7,19.9,34.2],["Llama",39.7,32.2,47.9],["Pooled (5 models)",21.2,null,null]];
+const x0=150,w=480,hi=50,X=v=>x0+v/hi*w;
+for(let v=0;v<=hi;v+=10){E(s,"line",{x1:X(v),x2:X(v),y1:15,y2:205,stroke:"#ddd"});E(s,"text",{x:X(v),y:222,"text-anchor":"middle",fill:"#555"},v+"%");}
+rows.forEach((r,i)=>{const y=25+i*30;E(s,"text",{x:140,y:y+14,"text-anchor":"end",fill:C.ink},r[0]);E(s,"rect",{x:x0,y:y,width:X(r[1])-x0,height:20,fill:i==5?C.grey:C.blue});
+if(r[2]!==null){E(s,"line",{x1:X(r[2]),x2:X(r[3]),y1:y+10,y2:y+10,stroke:"#000","stroke-width":1.5});E(s,"line",{x1:X(r[2]),x2:X(r[2]),y1:y+5,y2:y+15,stroke:"#000"});E(s,"line",{x1:X(r[3]),x2:X(r[3]),y1:y+5,y2:y+15,stroke:"#000"});}
+E(s,"text",{x:(r[3]!==null?X(r[3]):X(r[1]))+8,y:y+14,fill:"#555","font-size":11},r[1].toFixed(1)+"%");});})();
+(function(){const s=document.getElementById("fig4");const cls=["Critical posts (n=146)","Mixed posts (n=148)","Supportive posts (n=138)"];const hum=[0,20,78],llm=[21,37,55];
+const y0=200,h=150,Y=v=>y0-v/100*h;
+[0,25,50,75,100].forEach(v=>{E(s,"line",{x1:80,x2:660,y1:Y(v),y2:Y(v),stroke:"#ddd"});E(s,"text",{x:72,y:Y(v)+4,"text-anchor":"end",fill:"#555"},v+"%");});
+cls.forEach((c,i)=>{const x=110+i*190;
+E(s,"rect",{x:x,y:Y(hum[i]),width:60,height:hum[i]/100*h,fill:C.grey});E(s,"rect",{x:x+68,y:Y(llm[i]),width:60,height:llm[i]/100*h,fill:C.blue});
+E(s,"text",{x:x+30,y:Y(hum[i])-4,"text-anchor":"middle","font-size":11},hum[i]+"%");E(s,"text",{x:x+98,y:Y(llm[i])-4,"text-anchor":"middle","font-size":11},llm[i]+"%");
+E(s,"text",{x:x+64,y:218,"text-anchor":"middle",fill:C.ink},c);});
+E(s,"rect",{x:470,y:8,width:12,height:12,fill:C.grey});E(s,"text",{x:488,y:19},"Human replies");E(s,"rect",{x:580,y:8,width:12,height:12,fill:C.blue});E(s,"text",{x:598,y:19},"LLM answers");})();
+</script>
+</body></html>
